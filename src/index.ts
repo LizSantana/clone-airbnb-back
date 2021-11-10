@@ -1,10 +1,10 @@
 import { connect, disconnect } from 'mongoose';
-import { LocacaoModel } from './entidades/locacao';
-import { ProprietarioModel } from './entidades/proprietario';
-import { ClienteModel } from './entidades/cliente';
-import { DateTimeModel } from './entidades/dateTime';
-import { ReciboModel } from './entidades/recibo';
-import { ReservaModel } from './entidades/reserva';
+import { LocacaoModel } from '../src/persistencia/locacaoModel';
+import { ProprietarioModel } from '../src/persistencia/proprietarioModel';
+import { ClienteModel } from '../src/persistencia/clienteModel';
+import { DateTimeModel } from '../src/persistencia/dateTimeModel';
+import { ReciboModel } from '../src/persistencia/reciboModel';
+import { ReservaModel } from '../src/persistencia/reservaModel';
 
 const uri = 'mongodb+srv://laranjinha:oRange@cluster0.ooj0o.mongodb.net/sample_airbnb?retryWrites=true&w=majorit';
 const urilocal = 'mongodb://localhost:27017';
@@ -42,6 +42,22 @@ async function main() {
             capacidade: 4,
             ultimo_update: new Date()
         });*/
+        /*const locacaoInserida = await LocacaoModel.create({
+            locacao_nome: 'Chalé em Ubatuba próximo à famosa praia do Lázaro!',
+            cep: "17510985",
+            logradouro: "Rua São Domingos",
+            complemento: "Chalé",
+            bairro: "Ribeira",
+            localidade: "Ubatuba",
+            uf: "SP",
+            descricao_longa: "Chalé totalmente equipado, com café da manhã incluso, WiFi, 2 camas de casal",
+            descricao_curta: "Chalé totalmente equipado em Ubatuba",
+            preco: 270.00,
+            proprietario_id: proprietarios[0],
+            capacidade: 4,
+            ultimo_update: new Date()
+        });*/
+
         //inserindo cliente
         /*const clienteInserido = await ClienteModel.create({
             nome: 'Edineia Silva',
@@ -67,7 +83,7 @@ async function main() {
             montante: 4824.00
         })*/
         //inserindo reserva
-        const reservaInserida = await ReservaModel.create({
+        /*const reservaInserida = await ReservaModel.create({
             locacao_id: Object("618b471eb55d02fd62d9f76d"),
             proprietario_id: Object("618b4307603ef4ce00c61f3d"),
             cliente_id: Object("618b48e1f0e94827eedd8fed"),
@@ -77,18 +93,18 @@ async function main() {
         })
 
         console.log('Inserido:');
-        console.log(reservaInserida);
+        console.log(reservaInserida);*/
         
         /*
         //consultar todas as pessoas como documentos
         const pessoas = await PessoaModel.find().exec();
         console.log('Resultado da consulta:');
-        console.log(pessoas);
+        //console.log(pessoas);*/
         //consultar todas as pessoas como objetos simples
-        const pessoas2 = await PessoaModel.find().lean();
+        const locacoes = await LocacaoModel.find().lean();
         console.log('Resultado da consulta:');
-        console.log(pessoas2);
-        */
+        console.log(locacoes);
+
         /*
         const numero = await PessoaModel.where('idade').lte(18).countDocuments().exec();
         console.log('Resultado da consulta:');
