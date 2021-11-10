@@ -1,10 +1,11 @@
 import { connect, disconnect, ObjectId, SchemaTypes } from 'mongoose';
-import { LocacaoModel } from './entidades/locacao';
-import { ProprietarioModel } from './entidades/proprietario';
-import { ClienteModel } from './entidades/cliente';
-import { DateTimeModel } from './entidades/dateTime';
-import { ReciboModel } from './entidades/recibo';
-import { ReservaModel } from './entidades/reserva';
+import { LocacaoModel } from './persistencia/locacaoModel';
+import { ProprietarioModel } from './persistencia/proprietarioModel';
+import { ClienteModel } from './persistencia/clienteModel';
+import { DateTimeModel } from './persistencia/dateTimeModel';
+import { ReciboModel } from './persistencia/reciboModel';
+import { ReservaModel } from './persistencia/reservaModel';
+import * as locacaoRepositorio from './persistencia/locacaoRepositorio';
 
 const uri = 'mongodb+srv://laranjinha:oRange@cluster0.ooj0o.mongodb.net/sample_airbnb?retryWrites=true&w=majorit';
 const urilocal = 'mongodb://localhost:27017';
@@ -42,6 +43,22 @@ async function main() {
             capacidade: 4,
             ultimo_update: new Date()
         });*/
+        /*const locacaoInserida = await LocacaoModel.create({
+            locacao_nome: 'Chalé em Ubatuba próximo à famosa praia do Lázaro!',
+            cep: "17510985",
+            logradouro: "Rua São Domingos",
+            complemento: "Chalé",
+            bairro: "Ribeira",
+            localidade: "Ubatuba",
+            uf: "SP",
+            descricao_longa: "Chalé totalmente equipado, com café da manhã incluso, WiFi, 2 camas de casal",
+            descricao_curta: "Chalé totalmente equipado em Ubatuba",
+            preco: 270.00,
+            proprietario_id: proprietarios[0],
+            capacidade: 4,
+            ultimo_update: new Date()
+        });*/
+
         //inserindo cliente
         /*const clienteInserido = await ClienteModel.create({
             nome: 'Edineia Silva',
@@ -89,12 +106,22 @@ async function main() {
         //consultar todas as pessoas como documentos
         const pessoas = await PessoaModel.find().exec();
         console.log('Resultado da consulta:');
-        console.log(pessoas);
+        //console.log(pessoas);*/
         //consultar todas as pessoas como objetos simples
-        const pessoas2 = await PessoaModel.find().lean();
+        const locacoes = await LocacaoModel.find().lean();
         console.log('Resultado da consulta:');
-        console.log(pessoas2);
-        */
+        //console.log(locacoes);
+
+        let locacaoBA = await locacaoRepositorio.buscarPorUF('SP');
+        //console.log(locacaoBA);
+
+        let capacidadeDeQuatroPessoas = await locacaoRepositorio.buscarPorCapacidade(3);
+        //console.log(capacidadeDeQuatroPessoas);
+
+        let buscarPreco = await locacaoRepositorio.buscarPorPreco(250);
+        console.log(buscarPreco);
+
+
         /*
         const numero = await PessoaModel.where('idade').lte(18).countDocuments().exec();
         console.log('Resultado da consulta:');
