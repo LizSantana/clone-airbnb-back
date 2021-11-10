@@ -1,4 +1,4 @@
-import { connect, disconnect } from 'mongoose';
+import { connect, disconnect, ObjectId, SchemaTypes } from 'mongoose';
 import { LocacaoModel } from './entidades/locacao';
 import { ProprietarioModel } from './entidades/proprietario';
 import { ClienteModel } from './entidades/cliente';
@@ -67,8 +67,14 @@ async function main() {
             montante: 4824.00
         })*/
         //inserindo reserva
+        const ObjectId = SchemaTypes.ObjectId;
         const reservaInserida = await ReservaModel.create({
-            locacao_id: Object("618b471eb55d02fd62d9f76d"),
+            locacao_id: LocacaoModel.aggregate([
+                {
+                    $match: {_id: new ObjectId("618b471eb55d02fd62d9f76d")},
+
+                }
+            ]),
             proprietario_id: Object("618b4307603ef4ce00c61f3d"),
             cliente_id: Object("618b48e1f0e94827eedd8fed"),
             recibos_id: Object("618b4d6f335ddb7cbc8ba76e"),

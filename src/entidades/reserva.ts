@@ -1,7 +1,7 @@
-import { Schema, model, ObjectId, SchemaTypes} from 'mongoose';
+import { Schema, model, ObjectId, SchemaTypes, Aggregate} from 'mongoose';
 
 export interface Reserva {
-    locacao_id: ObjectId;
+    locacao_id: Aggregate<Reserva>;
     proprietario_id: ObjectId;
     cliente_id: ObjectId;
     recibos_id: ObjectId;
@@ -10,7 +10,7 @@ export interface Reserva {
 }
 
 export const ReservaSchema = new Schema<Reserva>({
-    locacao_id: {type: SchemaTypes.ObjectId, required: true},
+    locacao_id: {type: SchemaTypes.Mixed, required: true, ref: "Locacao"},
     proprietario_id: {type: SchemaTypes.ObjectId, required: true},
     cliente_id: {type: SchemaTypes.ObjectId, required: true},
     recibos_id: {type: SchemaTypes.ObjectId, required: true},
