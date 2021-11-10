@@ -67,7 +67,7 @@ async function main() {
             montante: 4824.00
         })*/
         //inserindo reserva
-        const ObjectId = SchemaTypes.ObjectId;
+        /*const ObjectId = SchemaTypes.ObjectId;
         const reservaInserida = await ReservaModel.create({
             locacao_id: LocacaoModel.aggregate([
                 {
@@ -84,7 +84,7 @@ async function main() {
 
         console.log('Inserido:');
         console.log(reservaInserida);
-        
+        */
         /*
         //consultar todas as pessoas como documentos
         const pessoas = await PessoaModel.find().exec();
