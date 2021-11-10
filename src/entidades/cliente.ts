@@ -20,4 +20,4 @@ export const ClienteSchema = new Schema<Cliente>({
     uf: {type: String, required: true, minlength: 2, maxlength: 2},
 });
 
-export const LocacaoModel = model<Cliente>('Cliente', ClienteSchema, 'clientes');
+export const ClienteModel = model<Cliente>('Cliente', ClienteSchema, 'clientes');

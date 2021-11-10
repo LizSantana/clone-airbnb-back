@@ -18,4 +18,4 @@ export const ReservaSchema = new Schema<Reserva>({
     data_fim: {type: Date, required: true, default: new Date()},
 });
 
-export const LocacaoModel = model<Reserva>('Reserva', ReservaSchema, 'reservas');
+export const ReservaModel = model<Reserva>('Reserva', ReservaSchema, 'reservas');

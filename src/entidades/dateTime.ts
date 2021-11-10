@@ -12,4 +12,4 @@ export const DateTimeSchema = new Schema<DateTime>({
     check_out: {type: Date, required: true, default: new Date()},
 })
 
-export const LocacaoModel = model<DateTime>('DateTime', DateTimeSchema, 'date_time');
+export const DateTimeModel = model<DateTime>('DateTime', DateTimeSchema, 'date_time');

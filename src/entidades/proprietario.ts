@@ -22,4 +22,4 @@ export const ProprietarioSchema = new Schema<Proprietario>({
     uf: {type: String, required: true, minlength: 2, maxlength: 2},
 });
 
-export const LocacaoModel = model<Proprietario>('Proprietario', ProprietarioSchema, 'proprietarios');
+export const ProprietarioModel = model<Proprietario>('Proprietario', ProprietarioSchema, 'proprietarios');

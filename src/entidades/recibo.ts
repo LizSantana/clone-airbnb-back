@@ -14,4 +14,4 @@ export const ReciboSchema = new Schema<Recibo>({
     montante:{type:Number, required:true, min:1}
 });
 
-export const LocacaoModel = model<Recibo>('Recibo', ReciboSchema, 'recibos');
+export const ReciboModel = model<Recibo>('Recibo', ReciboSchema, 'recibos');
