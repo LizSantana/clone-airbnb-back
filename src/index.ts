@@ -1,7 +1,7 @@
 import { connect, disconnect } from 'mongoose';
-import { PessoaModel } from './entidades/pessoa';
+import { LocacaoModel } from './entidades/locacao';
 
-const uri = 'mongodb+srv://laranjinha:oRange@cluster0.ooj0o.mongodb.net/myFirstDatabase?retryWrites=true&w=majorit';
+const uri = 'mongodb+srv://laranjinha:oRange@cluster0.ooj0o.mongodb.net/sample_airbnb?retryWrites=true&w=majorit';
 const urilocal = 'mongodb://localhost:27017';
 
 async function main() {
@@ -11,7 +11,7 @@ async function main() {
 
         
         //inserir uma pessoa
-        /*const documentoInserido = await PessoaModel.create({
+        /*const documentoInserido = await LocacaoModel.create({
             nome: 'John Doe',
             idade: 38,
             email: 'jd@gmail.com'
@@ -46,7 +46,7 @@ async function main() {
         }
         */
         //remover um documento em memória e salvar no banco
-        const documento = await PessoaModel.findById('6169c1832e17f3fc22b790f8').exec();
+        const documento = await LocacaoModel.findById('6169c1832e17f3fc22b790f8').exec();
         if (documento != null) {
             const documentoRemovido = await documento.remove();
             console.log('Resultado da remoção:');
