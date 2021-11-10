@@ -5,6 +5,7 @@ import { ClienteModel } from '../src/persistencia/clienteModel';
 import { DateTimeModel } from '../src/persistencia/dateTimeModel';
 import { ReciboModel } from '../src/persistencia/reciboModel';
 import { ReservaModel } from '../src/persistencia/reservaModel';
+import * as locacaoRepositorio from './persistencia/locacaoRepositorio';
 
 const uri = 'mongodb+srv://laranjinha:oRange@cluster0.ooj0o.mongodb.net/sample_airbnb?retryWrites=true&w=majorit';
 const urilocal = 'mongodb://localhost:27017';
@@ -103,7 +104,17 @@ async function main() {
         //consultar todas as pessoas como objetos simples
         const locacoes = await LocacaoModel.find().lean();
         console.log('Resultado da consulta:');
-        console.log(locacoes);
+        //console.log(locacoes);
+
+        let locacaoBA = await locacaoRepositorio.buscarPorUF('SP');
+        //console.log(locacaoBA);
+
+        let capacidadeDeQuatroPessoas = await locacaoRepositorio.buscarPorCapacidade(3);
+        //console.log(capacidadeDeQuatroPessoas);
+
+        let buscarPreco = await locacaoRepositorio.buscarPorPreco(250);
+        console.log(buscarPreco);
+
 
         /*
         const numero = await PessoaModel.where('idade').lte(18).countDocuments().exec();
