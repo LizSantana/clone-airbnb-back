@@ -6,6 +6,9 @@ import { DateTimeModel } from './persistencia/dateTimeModel';
 import { ReciboModel } from './persistencia/reciboModel';
 import { ReservaModel } from './persistencia/reservaModel';
 import * as locacaoRepositorio from './persistencia/locacaoRepositorio';
+import * as reservasRepositorio from './persistencia/reservasRepositorio';
+import { ReservasModel } from './persistencia/reservasModel';
+
 
 const uri = 'mongodb+srv://laranjinha:oRange@cluster0.ooj0o.mongodb.net/sample_airbnb?retryWrites=true&w=majorit';
 const urilocal = 'mongodb://localhost:27017';
@@ -28,7 +31,7 @@ async function main() {
             uf: "BA",
         })*/
         // inserindo uma locação
-        /*const locacaoInserida = await LocacaoModel.create({
+       /* const locacaoInserida = await ReservasModel.create({
             locacao_nome: 'Venha aprveitar a melhor vista mar da Bahia!!!',
             cep: "41940750",
             logradouro: "Avenida Alto da Sereia",
@@ -39,11 +42,13 @@ async function main() {
             descricao_longa: "Duas suítes, nascente, próximo da praia, bons restaurantes perto",
             descricao_curta: "Flat inteiro no Rio Vermelho",
             preco: 201.00,
-            proprietario_id: Object("618b4307603ef4ce00c61f3d"),
+            proprietario: {nome: 'Luis Belo', cpf: '12345678910'},
             capacidade: 4,
-            ultimo_update: new Date()
+            ultimo_update: new Date(),
+            check_in: new Date(2021, 11, 14),
+            ckeck_out: new Date(2021, 12, 16)
         });*/
-        /*const locacaoInserida = await LocacaoModel.create({
+        /*const locacaoInserido = await ReservasModel.create({
             locacao_nome: 'Chalé em Ubatuba próximo à famosa praia do Lázaro!',
             cep: "17510985",
             logradouro: "Rua São Domingos",
@@ -54,9 +59,11 @@ async function main() {
             descricao_longa: "Chalé totalmente equipado, com café da manhã incluso, WiFi, 2 camas de casal",
             descricao_curta: "Chalé totalmente equipado em Ubatuba",
             preco: 270.00,
-            proprietario_id: proprietarios[0],
+            proprietario: {nome: 'Luis Marcio', cpf: '12345678528', email: "luismarcio@mainModule.com", phone:"(11)98576-2611"},
             capacidade: 4,
-            ultimo_update: new Date()
+            ultimo_update: new Date(),
+            check_in: new Date(2021, 11, 10),
+            ckeck_out: new Date(2021, 11,13),
         });*/
 
         //inserindo cliente
@@ -108,9 +115,10 @@ async function main() {
         console.log('Resultado da consulta:');
         //console.log(pessoas);*/
         //consultar todas as pessoas como objetos simples
-        const locacoes = await LocacaoModel.find().lean();
-        console.log('Resultado da consulta:');
-        //console.log(locacoes);
+
+        const reservas = await ReservasModel.find().lean();
+        //console.log('Resultado da consulta:');
+       // console.log(reservas);
 
         let locacaoBA = await locacaoRepositorio.buscarPorUF('SP');
         //console.log(locacaoBA);
@@ -119,9 +127,16 @@ async function main() {
         //console.log(capacidadeDeQuatroPessoas);
 
         let buscarPreco = await locacaoRepositorio.buscarPorPreco(250);
-        console.log(buscarPreco);
+        //console.log(buscarPreco);
 
+        let buscaReservaPorId = await ReservasModel.findById('618bdea3c79fc0d84674bf57').exec();
+        console.log(buscaReservaPorId);
 
+        //let consultaStatus = await reservasRepositorio.status("618bdea3c79fc0d84674bf57", new Date(2021, 5, 11), new Date(2021, 5, 13));
+        //console.log(consultaStatus);
+        
+        //let criandoReserva = await reservasRepositorio.criarReserva("618bdea3c79fc0d84674bf57", new Date(2021, 5, 11), new Date(2021, 5, 13));
+        //console.log(criandoReserva);
         /*
         const numero = await PessoaModel.where('idade').lte(18).countDocuments().exec();
         console.log('Resultado da consulta:');

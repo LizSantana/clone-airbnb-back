@@ -11,7 +11,12 @@ export interface Locacao {
     descricao_longa: string;
     descricao_curta: string;
     preco: number;
-    proprietario_id: ObjectId;
+    proprietario: {
+        nome: string;
+        cpf: string;
+        email: string;
+        phone: string;
+    };
     capacidade: number;
     ultimo_update: Date;
 }

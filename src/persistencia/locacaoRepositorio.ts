@@ -6,6 +6,11 @@ export async function buscarPorUF(uf: string): Promise<Locacao[]> {
     return consulta.exec(); 
 }
 
+export async function buscarPorLocalidade(localidade: string): Promise<Locacao[]> {
+    let consulta = LocacaoModel.where('localidade').equals(localidade);
+    return consulta.exec(); 
+}
+
 export async function buscarPorCapacidade(capacidade: number): Promise<Locacao[]> {
     let consulta = LocacaoModel.where('capacidade').equals(capacidade);
     return consulta.exec(); 

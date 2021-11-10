@@ -1,7 +1,7 @@
 import { Schema, model, ObjectId, SchemaTypes} from 'mongoose';
-import { Locacao } from '../entidades/locacao';
+import { Reservas } from '../entidades/reservas';
  
-export const LocacaoSchema = new Schema<Locacao>({
+export const ReservasSchema = new Schema<Reservas>({
     locacao_nome: {type: String, required: true, minlength: 5, maxlength: 50},
     cep: {type: String, required: true, minlength: 8, maxlength: 8},
     logradouro: {type: String, required: true, minlength: 5, maxlength: 50},
@@ -20,6 +20,8 @@ export const LocacaoSchema = new Schema<Locacao>({
     },
     capacidade: {type: Number, required: true, min: 1},
     ultimo_update: {type: Date, required: true, default: new Date()},
+    check_in: {type: Date, required: true, default: new Date()},
+    check_out: {type: Date, required: true, default: new Date()},
 });
 
-export const LocacaoModel = model<Locacao>('Locacao', LocacaoSchema, 'locacoes');
+export const ReservasModel = model<Reservas>('Reservas', ReservasSchema, 'reservas');
