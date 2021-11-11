@@ -1,7 +1,7 @@
 import { connect } from 'mongoose';
 import app from './app';
 
-const uri = process.env.MONGO_URL || 'mongodb://localhost:27017/';
+const uri = process.env.MONGO_URL || '-';
 
 async function main() {
     try {
