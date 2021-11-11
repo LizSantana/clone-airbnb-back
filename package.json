@@ -4,8 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --runInBand --detectOpenHandles",
-    "test:coverage": "jest --coverage --runInBand",
     "nodemon": "nodemon -r dotenv/config src/index.ts",
     "build": "tsc",
     "build:live": "nodemon -r dotenv/config --watch src/ --exec ts-node src/index.ts -e ts",
