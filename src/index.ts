@@ -1,7 +1,7 @@
 import { connect } from 'mongoose';
 import app from './app';
 
-const uri = process.env.MONGO_URL || '-';
+const uri = process.env.MONGO_URL || 'mongodb+srv://laranjinha:oRange@cluster0.ooj0o.mongodb.net/sample_airbnb?retryWrites=true&w=majorit';
 
 async function main() {
     try {
