@@ -5,7 +5,7 @@ import morgan from 'morgan';
 import errorHandler from 'errorhandler';
 
 const app = express();
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 5000);
 app.use(cors());
 app.use(json());
 app.use(urlencoded({extended: false}));
