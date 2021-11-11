@@ -8,6 +8,24 @@ import { ReservaModel } from './persistencia/reservaModel';
 import * as locacaoRepositorio from './persistencia/locacaoRepositorio';
 import * as reservasRepositorio from './persistencia/reservasRepositorio';
 import { ReservasModel } from './persistencia/reservasModel';
+import express, {Request, Response, NextFunction} from 'express';
+
+
+const app = express();
+const port = 3000;
+
+app.listen(port, () => {
+    console.log(`Express na porta ${port}`);
+});
+
+app.get('/', function (req, res) {
+    res.send('Olá!');
+});
+
+app.get('/buscaPorUf/BA',  async (req, res) => {
+    let resultado = await locacaoRepositorio.buscarPorUF('BA');
+    return res.json(resultado);
+});
 
 
 const uri = 'mongodb+srv://laranjinha:oRange@cluster0.ooj0o.mongodb.net/sample_airbnb?retryWrites=true&w=majorit';
@@ -118,10 +136,11 @@ async function main() {
 
         const reservas = await ReservasModel.find().lean();
         //console.log('Resultado da consulta:');
-       // console.log(reservas);
+        //console.log(reservas);
 
-        let locacaoBA = await locacaoRepositorio.buscarPorUF('SP');
-        //console.log(locacaoBA);
+  
+        let locacaoBA = await locacaoRepositorio.buscarPorUF('BA');
+        console.log(locacaoBA);
 
         let capacidadeDeQuatroPessoas = await locacaoRepositorio.buscarPorCapacidade(3);
         //console.log(capacidadeDeQuatroPessoas);
