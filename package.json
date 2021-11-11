@@ -2,12 +2,12 @@
   "name": "teste",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon -r dotenv/config src/index.ts",
     "build": "tsc",
-    "start": "ts-node -r dotenv/config src/index.ts",
+    "start:tsnode": "ts-node -r dotenv/config src/index.ts",
     "start:node": "npm run build && node -r dotenv/config dist/index.js"
   },
   "repository": {
