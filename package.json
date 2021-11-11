@@ -4,13 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "nodemon": "nodemon -r dotenv/config src/index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon -r dotenv/config src/index.ts",
     "build": "tsc",
-    "build:live": "nodemon -r dotenv/config --watch src/ --exec ts-node src/index.ts -e ts",
-    "dev": "npm run build:live",
-    "start": "node -r dotenv/config dist/index.js",
-    "prod": "npm run build && npm start",
-    "start:tsnode": "ts-node -r dotenv/config src/index.ts",
+    "start": "ts-node -r dotenv/config src/index.ts",
     "start:node": "npm run build && node -r dotenv/config dist/index.js"
   },
   "repository": {
