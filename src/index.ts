@@ -9,22 +9,11 @@ import * as locacaoRepositorio from './persistencia/locacaoRepositorio';
 import * as reservasRepositorio from './persistencia/reservasRepositorio';
 import { ReservasModel } from './persistencia/reservasModel';
 import express, {Request, Response, NextFunction} from 'express';
+import { router as locacaoRouter} from '../src/routes/locacao.routes';
+import app from './app';
 
-
-const app = express();
-const port = 3000;
-
-app.listen(port, () => {
-    console.log(`Express na porta ${port}`);
-});
-
-app.get('/', function (req, res) {
-    res.send('Olá!');
-});
-
-app.get('/buscaPorUf/BA',  async (req, res) => {
-    let resultado = await locacaoRepositorio.buscarPorUF('BA');
-    return res.json(resultado);
+app.listen(app.get('port'), () => {
+    console.log('Express na porta:', app.get('port'));
 });
 
 
@@ -182,10 +171,10 @@ async function main() {
     } catch (error) {
         console.log('Falha de acesso ao BD:');
         console.error(error);
-    } finally {
+    } /*finally {
         await disconnect();
         console.log('Desconectado do MongoDb Atlas');
-    }
+    }*/
 }
 
 main();
