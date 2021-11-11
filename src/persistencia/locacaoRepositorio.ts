@@ -21,3 +21,8 @@ export async function buscarPorPreco(preco: number): Promise<Locacao[]> {
     let consulta = LocacaoModel.find({preco: {$lte: preco}});
     return consulta.exec();
 }
+
+
+export async function inserirLocacao(locacao: Locacao): Promise<Locacao> {
+    return LocacaoModel.create(locacao);
+}
