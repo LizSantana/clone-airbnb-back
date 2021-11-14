@@ -20,6 +20,10 @@ export const LocacaoSchema = new Schema<Locacao>({
     },
     capacidade: {type: Number, required: true, min: 1},
     ultimo_update: {type: Date, required: true, default: new Date()},
+    img: {
+        data: {type: 'Buffer'},
+        contentType: {type: String}
+    }
 });
 
 export const LocacaoModel = model<Locacao>('Locacao', LocacaoSchema, 'locacoes');
