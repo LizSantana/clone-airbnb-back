@@ -33,7 +33,11 @@ export async function getFiltragemPorPreco(req:Request, res: Response) {
 }
 
 export async function postLocacao(req: Request, res: Response) {
+  
+  
     const erros = validationResult(req);
+    
+    
     if (!erros.isEmpty()) {
        return res.status(400).json({erros: erros.array()});
     } else {
