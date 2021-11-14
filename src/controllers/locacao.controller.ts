@@ -42,7 +42,7 @@ export async function postLocacao(req: Request, res: Response) {
     const locacao = req.body;
     if (locacao) {
         await locacaoRepositorio.inserirLocacao(locacao);
-       return res.send(locacao);
+       return res.redirect('back');
     }
     }
 }

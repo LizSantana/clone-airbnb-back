@@ -19,9 +19,6 @@ export interface Locacao {
     };
     capacidade: number;
     ultimo_update: Date;
-    img?: {
-        data: Buffer,
-        contentType: String
-    };
+    urlImage: string;
 }
 
