@@ -1,6 +1,7 @@
 import { ObjectId } from 'mongoose';
 
 export interface Reservas {
+    id_locacao: string;
     locacao_nome: string;
     cep: string;
     logradouro: string;
