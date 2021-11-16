@@ -20,8 +20,8 @@ export interface Locacao {
     capacidade: number;
     ultimo_update: Date;
     urlImage: string;
-    check_in?: Date;
-    check_out?: Date;
+    check_in?: String;
+    check_out?: String;
     cliente?: {
         nome?: string;
         cpf?: string;

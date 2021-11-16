@@ -47,6 +47,19 @@ export async function postLocacao(req: Request, res: Response) {
     }
 }
 
+export async function putLocacao(req: Request, res: Response) {
+    console.log("Req.params.id", req.params.id.toString());
+    console.log("Req.body", req.body);
+    try {
+        await locacaoRepositorio.updateLocacao(req.body.id, req.body);
+        res.status(200).send({
+            message: 'Locacao atualizada com sucesso!'
+        });
+    } catch(error) {
+        res.status(500).send({message: 'Falha ao atualizar a locação'});
+    }
+}
+
 export function postAloValidado(req: Request, res: Response) {
     const erros = validationResult(req);
     if (!erros.isEmpty()) {

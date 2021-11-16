@@ -1,5 +1,7 @@
 import { LocacaoModel } from './locacaoModel';
 import { Locacao } from '../entidades/locacao';
+import { ObjectId } from 'mongoose';
+import { Query } from 'mongoose';
 
 export async function buscarPorUF(uf: string): Promise<Locacao[]> {
     let consulta = LocacaoModel.where('uf').equals(uf);
@@ -25,4 +27,15 @@ export async function buscarPorPreco(preco: number): Promise<Locacao[]> {
 
 export async function inserirLocacao(locacao: Locacao): Promise<Locacao> {
     return LocacaoModel.create(locacao);
+}
+
+export async function updateLocacao(id: ObjectId, locacao:Locacao): Promise<any> {
+    let result = await LocacaoModel.findByIdAndUpdate(id,{
+        $set: locacao
+    });
+    console.log(result);
+    //let consulta = LocacaoModel.findByIdAndUpdate(id, locacao);
+   // console.log("update no repositorio:", consulta);
+   // console.log(LocacaoModel.findById(id))
+    //return consulta;
 }
