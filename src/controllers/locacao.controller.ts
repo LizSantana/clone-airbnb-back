@@ -1,7 +1,9 @@
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 import { LocacaoModel } from '../persistencia/locacaoModel';
+import { ObjectId } from 'mongoose';
 import * as locacaoRepositorio from '../persistencia/locacaoRepositorio';
+import { request } from 'http';
 
 export async function getLocacao(req: Request, res: Response) {
     const locacao = await LocacaoModel.find().lean();
@@ -48,15 +50,27 @@ export async function postLocacao(req: Request, res: Response) {
 }
 
 export async function putLocacao(req: Request, res: Response) {
-    console.log("Req.params.id", req.params.id.toString());
-    console.log("Req.body", req.body);
     try {
-        await locacaoRepositorio.updateLocacao(req.body.id, req.body);
-        res.status(200).send({
+        await locacaoRepositorio.updateLocacao(req.params.id, req.body);
+        /*res.status(200).send({
             message: 'Locacao atualizada com sucesso!'
-        });
+        });*/
+        res.redirect(200,'back')
     } catch(error) {
+        console.log(error);
         res.status(500).send({message: 'Falha ao atualizar a locação'});
+    }
+}
+
+export async function deleteLocacao(req: Request, res: Response) {
+    try{
+        await locacaoRepositorio.deletaLocacao(req.params.id, req.body); 
+        res.status(200).send({
+            message: 'Locação deletada com sucesso!'
+        })
+    } catch(error) {
+        console.log(error);
+        res.status(500).send({message: 'Falha ao deletar locacao'});
     }
 }
 
