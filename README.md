@@ -1,12 +1,12 @@
 ## :fire: O projeto
 
-Airbnb Clone
+[Airbnb Clone](https://airbnb-clone-desafio.herokuapp.com/api/locacao) 
 
 ### :rocket: Tecnologias Usadas
 
 O projeto foi feito com as seguintes tecnologias:
 
-- [NodeJS](https://pt-br.reactjs.org/)
+- [NodeJS](https://nodejs.org/en/)
 - [Express](https://expressjs.com/)
 - [MongoDB](https://www.mongodb.com/)
 - [Mongoose](https://mongoosejs.com/)
