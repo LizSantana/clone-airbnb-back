@@ -1,6 +1,6 @@
 ## :fire: O projeto
 
-Agenda Bot.
+Airbnb Clone
 
 ### :rocket: Tecnologias Usadas
 
