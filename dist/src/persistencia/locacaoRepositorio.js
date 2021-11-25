@@ -9,29 +9,33 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.inserirLocacao = exports.buscarPorPreco = exports.buscarPorCapacidade = exports.buscarPorLocalidade = exports.buscarPorUF = void 0;
+exports.deletaLocacao = exports.updateLocacao = exports.inserirLocacao = exports.buscarPorPreco = exports.buscarPorCapacidade = exports.buscarPorLocalidade = exports.buscarPorUF = void 0;
 const locacaoModel_1 = require("./locacaoModel");
 function buscarPorUF(uf) {
     return __awaiter(this, void 0, void 0, function* () {
-        let consulta = locacaoModel_1.LocacaoModel.where('uf').equals(uf);
+        let consulta = locacaoModel_1.LocacaoModel.find({ "uf": { "$regex": uf, "$options": "i" } });
         return consulta.exec();
     });
 }
 exports.buscarPorUF = buscarPorUF;
 function buscarPorLocalidade(localidade) {
     return __awaiter(this, void 0, void 0, function* () {
-        let consulta = locacaoModel_1.LocacaoModel.where('localidade').equals(localidade);
+        let consulta = locacaoModel_1.LocacaoModel.find({ "localidade": { "$regex": localidade, "$options": "i" } });
         return consulta.exec();
     });
 }
 exports.buscarPorLocalidade = buscarPorLocalidade;
 function buscarPorCapacidade(capacidade) {
     return __awaiter(this, void 0, void 0, function* () {
-        let consulta = locacaoModel_1.LocacaoModel.where('capacidade').equals(capacidade);
+        let consulta = locacaoModel_1.LocacaoModel.find({ capacidade: { $gte: capacidade } });
         return consulta.exec();
     });
 }
 exports.buscarPorCapacidade = buscarPorCapacidade;
+/*export async function buscar(capacidade: number, campo1: any): Promise<Locacao[]> {
+    let consulta = LocacaoModel.where(campo1).equals(capacidade);
+    return consulta.exec();
+} */
 function buscarPorPreco(preco) {
     return __awaiter(this, void 0, void 0, function* () {
         let consulta = locacaoModel_1.LocacaoModel.find({ preco: { $lte: preco } });
@@ -45,4 +49,19 @@ function inserirLocacao(locacao) {
     });
 }
 exports.inserirLocacao = inserirLocacao;
+function updateLocacao(id, locacao) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return yield locacaoModel_1.LocacaoModel.findByIdAndUpdate(id, locacao);
+    });
+}
+exports.updateLocacao = updateLocacao;
+function deletaLocacao(id, cpf) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let consulta = yield locacaoModel_1.LocacaoModel.findById(id).where('cpf').equals(cpf);
+        if (consulta) {
+            yield locacaoModel_1.LocacaoModel.findByIdAndDelete(id);
+        }
+    });
+}
+exports.deletaLocacao = deletaLocacao;
 //# sourceMappingURL=locacaoRepositorio.js.map

@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
 const app_1 = __importDefault(require("./app"));
-const uri = process.env.MONGO_URL || 'mongodb://localhost:27017/';
+const uri = process.env.MONGO_URL || 'mongodb+srv://laranjinha:oRange@cluster0.ooj0o.mongodb.net/sample_airbnb?retryWrites=true&w=majorit';
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -28,10 +28,7 @@ function main() {
         catch (error) {
             console.log('Falha de acesso ao BD:');
             console.error(error);
-        } /*finally {
-            await disconnect();
-            console.log('Desconectado do MongoDb Atlas');
-        }*/
+        }
     });
 }
 main();
