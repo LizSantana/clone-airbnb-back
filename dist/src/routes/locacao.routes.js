@@ -29,6 +29,7 @@ exports.router.get(`${exports.path}/uf/:uf`, LocacaoController.getFiltragemPorUF
 exports.router.get(`${exports.path}/localidade/:localidade`, LocacaoController.getFiltragemPorLocalidade);
 exports.router.get(`${exports.path}/capacidade/:capacidade`, LocacaoController.getFiltragemPorCapacidade);
 exports.router.get(`${exports.path}/preco/:preco`, LocacaoController.getFiltragemPorPreco);
+exports.router.get(`${exports.path}/localidade/:localidade/preco/:preco`, LocacaoController.getFiltragemPorLocalidadeEPreco);
 exports.router.post(`${exports.path}/criarlocacao`, LocacaoController.postLocacao);
 exports.router.post(`${exports.path}/:id`, LocacaoController.putLocacao);
 exports.router.post(`${exports.path}/:id/deletarlocacao`, LocacaoController.deleteLocacao);
