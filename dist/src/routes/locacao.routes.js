@@ -30,7 +30,7 @@ exports.router.get(`${exports.path}/uf/:uf`, LocacaoController.getFiltragemPorUF
 exports.router.get(`${exports.path}/localidade/:localidade`, LocacaoController.getFiltragemPorLocalidade);
 exports.router.get(`${exports.path}/capacidade/:capacidade`, LocacaoController.getFiltragemPorCapacidade);
 exports.router.get(`${exports.path}/preco/:preco`, LocacaoController.getFiltragemPorPreco);
-/*router.post(`${path}/validado`,
-            body('nome').notEmpty().trim().isLength({min:1, max:25}).withMessage('Nome deve ter entre 1 e 25 caracteres'),
-            AloController.postAloValidado);*/ 
+exports.router.post(`${exports.path}/criarlocacao`, LocacaoController.postLocacao);
+exports.router.post(`${exports.path}/:id`, LocacaoController.putLocacao);
+exports.router.post(`${exports.path}/:id/deletarlocacao`, LocacaoController.deleteLocacao);
 //# sourceMappingURL=locacao.routes.js.map

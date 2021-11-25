@@ -28,7 +28,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAloErro = exports.postAloValidado = exports.postLocacao = exports.getFiltragemPorPreco = exports.getFiltragemPorCapacidade = exports.getFiltragemPorLocalidade = exports.getFiltragemPorUF = exports.getLocacao = void 0;
+exports.getAloErro = exports.postAloValidado = exports.deleteLocacao = exports.putLocacao = exports.postLocacao = exports.getFiltragemPorPreco = exports.getFiltragemPorCapacidade = exports.getFiltragemPorLocalidade = exports.getFiltragemPorUF = exports.getLocacao = void 0;
 const express_validator_1 = require("express-validator");
 const locacaoModel_1 = require("../persistencia/locacaoModel");
 const locacaoRepositorio = __importStar(require("../persistencia/locacaoRepositorio"));
@@ -81,12 +81,43 @@ function postLocacao(req, res) {
             const locacao = req.body;
             if (locacao) {
                 yield locacaoRepositorio.inserirLocacao(locacao);
-                return res.send(locacao);
+                return res.redirect('back');
             }
         }
     });
 }
 exports.postLocacao = postLocacao;
+function putLocacao(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            yield locacaoRepositorio.updateLocacao(req.params.id, req.body);
+            /*res.status(200).send({
+                message: 'Locacao atualizada com sucesso!'
+            });*/
+            res.redirect(200, 'back');
+        }
+        catch (error) {
+            console.log(error);
+            res.status(500).send({ message: 'Falha ao atualizar a locação' });
+        }
+    });
+}
+exports.putLocacao = putLocacao;
+function deleteLocacao(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            yield locacaoRepositorio.deletaLocacao(req.params.id, req.body);
+            res.status(200).send({
+                message: 'Locação deletada com sucesso!'
+            });
+        }
+        catch (error) {
+            console.log(error);
+            res.status(500).send({ message: 'Falha ao deletar locacao' });
+        }
+    });
+}
+exports.deleteLocacao = deleteLocacao;
 function postAloValidado(req, res) {
     const erros = (0, express_validator_1.validationResult)(req);
     if (!erros.isEmpty()) {

@@ -4,19 +4,24 @@ import { ObjectId } from 'mongoose';
 import { Query } from 'mongoose';
 
 export async function buscarPorUF(uf: string): Promise<Locacao[]> {
-    let consulta = LocacaoModel.where('uf').equals(uf);
+    let consulta =  LocacaoModel.find({"uf": {"$regex": uf, "$options": "i"}});
     return consulta.exec(); 
 }
 
 export async function buscarPorLocalidade(localidade: string): Promise<Locacao[]> {
-    let consulta = LocacaoModel.where('localidade').equals(localidade);
+    let consulta =  LocacaoModel.find({"localidade": {"$regex": localidade, "$options": "i"}});
     return consulta.exec(); 
 }
 
 export async function buscarPorCapacidade(capacidade: number): Promise<Locacao[]> {
-    let consulta = LocacaoModel.where('capacidade').equals(capacidade);
+    let consulta = LocacaoModel.find({capacidade: {$gte: capacidade}});
     return consulta.exec(); 
 } 
+
+/*export async function buscar(capacidade: number, campo1: any): Promise<Locacao[]> {
+    let consulta = LocacaoModel.where(campo1).equals(capacidade);
+    return consulta.exec(); 
+} */
 
 
 export async function buscarPorPreco(preco: number): Promise<Locacao[]> {
