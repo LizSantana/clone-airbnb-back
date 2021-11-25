@@ -25,7 +25,6 @@ const LocacaoController = __importStar(require("../controllers/locacao.controlle
 exports.router = (0, express_1.Router)();
 exports.path = '/locacao';
 exports.router.get(exports.path, LocacaoController.getLocacao);
-//router.get(`${path}/erro`, AloController.getAloErro);
 exports.router.get(`${exports.path}/uf/:uf`, LocacaoController.getFiltragemPorUF);
 exports.router.get(`${exports.path}/localidade/:localidade`, LocacaoController.getFiltragemPorLocalidade);
 exports.router.get(`${exports.path}/capacidade/:capacidade`, LocacaoController.getFiltragemPorCapacidade);
