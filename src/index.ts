@@ -15,10 +15,7 @@ async function main() {
     } catch (error) {
         console.log('Falha de acesso ao BD:');
         console.error(error);
-    } /*finally {
-        await disconnect();
-        console.log('Desconectado do MongoDb Atlas');
-    }*/
+    } 
 }
 
 main();

@@ -20,6 +20,15 @@ export const LocacaoSchema = new Schema<Locacao>({
     },
     capacidade: {type: Number, required: true, min: 1},
     ultimo_update: {type: Date, required: true, default: new Date()},
+    urlImage: {type: String},
+    check_in: {type: String},
+    check_out: {type: String},
+    cliente: {
+        nome: {type:String},
+        cpf: {type: String},
+        email: {type: String},
+        phone: {type: String}
+    },
 });
 
 export const LocacaoModel = model<Locacao>('Locacao', LocacaoSchema, 'locacoes');

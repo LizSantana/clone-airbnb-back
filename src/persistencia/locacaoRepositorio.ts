@@ -1,13 +1,15 @@
 import { LocacaoModel } from './locacaoModel';
 import { Locacao } from '../entidades/locacao';
+import { ObjectId } from 'mongoose';
+import { Query } from 'mongoose';
 
 export async function buscarPorUF(uf: string): Promise<Locacao[]> {
-    let consulta = LocacaoModel.where('uf').equals(uf);
+    let consulta =  LocacaoModel.find({"uf": {"$regex": uf, "$options": "i"}});
     return consulta.exec(); 
 }
 
 export async function buscarPorLocalidade(localidade: string): Promise<Locacao[]> {
-    let consulta = LocacaoModel.where('localidade').equals(localidade);
+    let consulta =  LocacaoModel.find({"localidade": {"$regex": localidade, "$options": "i"}});
     return consulta.exec(); 
 }
 
@@ -17,9 +19,14 @@ export async function buscarPorUFCapacidade(uf: string, capacidade: number): Pro
 }
 
 export async function buscarPorCapacidade(capacidade: number): Promise<Locacao[]> {
-    let consulta = LocacaoModel.where('capacidade').equals(capacidade);
+    let consulta = LocacaoModel.find({capacidade: {$gte: capacidade}});
     return consulta.exec(); 
 } 
+
+/*export async function buscar(capacidade: number, campo1: any): Promise<Locacao[]> {
+    let consulta = LocacaoModel.where(campo1).equals(capacidade);
+    return consulta.exec(); 
+} */
 
 
 export async function buscarPorPreco(preco: number): Promise<Locacao[]> {
@@ -30,4 +37,15 @@ export async function buscarPorPreco(preco: number): Promise<Locacao[]> {
 
 export async function inserirLocacao(locacao: Locacao): Promise<Locacao> {
     return LocacaoModel.create(locacao);
+}
+
+export async function updateLocacao(id: string, locacao:Object): Promise<any> {
+    return await LocacaoModel.findByIdAndUpdate(id, locacao);
+}
+
+export async function deletaLocacao(id: string, cpf: Object): Promise<any> {
+    let consulta = await LocacaoModel.findById(id).where('cpf').equals(cpf);
+    if(consulta){
+        await LocacaoModel.findByIdAndDelete(id);
+    }
 }
