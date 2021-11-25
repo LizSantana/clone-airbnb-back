@@ -10,9 +10,23 @@ export async function getLocacao(req: Request, res: Response) {
     return res.json(locacao);
 }
 
+export async function getUf(req: Request, res: Response) {
+    //const locacao = await LocacaoModel.find({}).select("uf -_id");
+    const locacao = await LocacaoModel.find({}).distinct("uf");
+    return res.json(locacao);
+    console.log(locacao);
+}
+
 export async function getFiltragemPorUF(req: Request, res: Response) {
     const uf = req.params.uf;
     const resultado = await locacaoRepositorio.buscarPorUF(uf);
+    return res.json(resultado);
+}
+
+export async function getFiltragemPorUfEPreco(req: Request, res: Response) {
+    const uf = req.params.uf;
+    const preco = parseInt(req.params.preco);
+    const resultado = await locacaoRepositorio.buscarPorUfEPreco(uf, preco);
     return res.json(resultado);
 }
 

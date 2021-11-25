@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deletaLocacao = exports.updateLocacao = exports.inserirLocacao = exports.buscarPorPreco = exports.buscarPorCapacidade = exports.buscarPorLocalidade = exports.buscarPorUF = void 0;
+exports.deletaLocacao = exports.updateLocacao = exports.inserirLocacao = exports.buscarPorPreco = exports.buscarPorLocalidadeEPreco = exports.buscarPorCapacidade = exports.buscarPorLocalidade = exports.buscarPorUF = void 0;
 const locacaoModel_1 = require("./locacaoModel");
 function buscarPorUF(uf) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -32,10 +32,13 @@ function buscarPorCapacidade(capacidade) {
     });
 }
 exports.buscarPorCapacidade = buscarPorCapacidade;
-/*export async function buscar(capacidade: number, campo1: any): Promise<Locacao[]> {
-    let consulta = LocacaoModel.where(campo1).equals(capacidade);
-    return consulta.exec();
-} */
+function buscarPorLocalidadeEPreco(localidade, preco) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let consulta = locacaoModel_1.LocacaoModel.where("localidade").equals(localidade).find({ "preco": { $lte: preco } });
+        return consulta.exec();
+    });
+}
+exports.buscarPorLocalidadeEPreco = buscarPorLocalidadeEPreco;
 function buscarPorPreco(preco) {
     return __awaiter(this, void 0, void 0, function* () {
         let consulta = locacaoModel_1.LocacaoModel.find({ preco: { $lte: preco } });
