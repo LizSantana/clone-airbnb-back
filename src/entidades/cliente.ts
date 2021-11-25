@@ -8,5 +8,9 @@ export interface Cliente {
     bairro: string;
     localidade: string;
     uf: string;
+    login: {
+        email: string;
+        senha: string;
+    }
 }
 

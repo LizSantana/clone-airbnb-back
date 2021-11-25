@@ -8,6 +8,7 @@ export const path = '/locacao';
 router.get(path, LocacaoController.getLocacao);
 //router.get(`${path}/erro`, AloController.getAloErro);
 router.get(`${path}/uf/:uf`, LocacaoController.getFiltragemPorUF);
+// router.get(`${path}/:uf?uf:capacidade?capacidade`, LocacaoController.getFiltragemPorUFCapacidade)
 router.get(`${path}/localidade/:localidade`, LocacaoController.getFiltragemPorLocalidade);
 router.get(`${path}/capacidade/:capacidade`, LocacaoController.getFiltragemPorCapacidade);
 router.get(`${path}/preco/:preco`, LocacaoController.getFiltragemPorPreco);

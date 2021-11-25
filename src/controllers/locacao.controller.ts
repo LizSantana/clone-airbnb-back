@@ -14,6 +14,12 @@ export async function getFiltragemPorUF(req: Request, res: Response) {
     return res.json(resultado);
 }
 
+// export async function getFiltragemPorUFCapacidade(req: Request, res: Response) {
+//     const { uf, capacidade } = req.query;
+//     const resultado = await locacaoRepositorio.buscarPorUFCapacidade(uf, capacidade);
+//     return res.json(resultado);
+// }
+
 export async function getFiltragemPorLocalidade(req: Request, res: Response) {
     const localidade = req.params.localidade;
     const resultado = await locacaoRepositorio.buscarPorLocalidade(localidade);

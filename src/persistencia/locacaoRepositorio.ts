@@ -11,6 +11,11 @@ export async function buscarPorLocalidade(localidade: string): Promise<Locacao[]
     return consulta.exec(); 
 }
 
+export async function buscarPorUFCapacidade(uf: string, capacidade: number): Promise<Locacao[]> {
+    let consulta = LocacaoModel.where('uf').equals(uf).where('capacidade').equals(capacidade);
+    return consulta.exec(); 
+}
+
 export async function buscarPorCapacidade(capacidade: number): Promise<Locacao[]> {
     let consulta = LocacaoModel.where('capacidade').equals(capacidade);
     return consulta.exec(); 
