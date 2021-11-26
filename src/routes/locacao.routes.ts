@@ -19,7 +19,4 @@ router.post(`${path}/criarlocacao`,
             LocacaoController.postLocacao);
 router.post(`${path}/:id`, LocacaoController.putLocacao);
 router.post(`${path}/:id/deletarlocacao`, LocacaoController.deleteLocacao);
-<<<<<<< HEAD
 router.post(`${path}/criarlogin`, LocacaoController.postLogin);
-=======
->>>>>>> origin/main
