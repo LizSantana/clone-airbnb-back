@@ -47,6 +47,11 @@ function getFiltragemPorUF(req, res) {
     });
 }
 exports.getFiltragemPorUF = getFiltragemPorUF;
+// export async function getFiltragemPorUFCapacidade(req: Request, res: Response) {
+//     const { uf, capacidade } = req.query;
+//     const resultado = await locacaoRepositorio.buscarPorUFCapacidade(uf, capacidade);
+//     return res.json(resultado);
+// }
 function getFiltragemPorLocalidade(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const localidade = req.params.localidade;

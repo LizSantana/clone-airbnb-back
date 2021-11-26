@@ -10,6 +10,10 @@ exports.ClienteSchema = new mongoose_1.Schema({
     bairro: { type: String, required: true, minlength: 5, maxlength: 50 },
     localidade: { type: String, required: true, minlength: 5, maxlength: 25 },
     uf: { type: String, required: true, minlength: 2, maxlength: 2 },
+    login: {
+        email: { type: String, required: true, minlength: 8, maxlength: 50 },
+        senha: { type: String, required: true, minlength: 5, maxlength: 50 }
+    }
 });
 exports.ClienteModel = (0, mongoose_1.model)('Cliente', exports.ClienteSchema, 'clientes');
 //# sourceMappingURL=clienteModel.js.map

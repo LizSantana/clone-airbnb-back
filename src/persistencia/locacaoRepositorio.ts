@@ -1,5 +1,7 @@
 import { LocacaoModel } from './locacaoModel';
+import { PessoaModel } from './pessoaModel';
 import { Locacao } from '../entidades/locacao';
+import { Pessoa } from '../entidades/pessoa';
 import { ObjectId } from 'mongoose';
 import { Query } from 'mongoose';
 
@@ -48,4 +50,8 @@ export async function deletaLocacao(id: string, cpf: Object): Promise<any> {
     if(consulta){
         await LocacaoModel.findByIdAndDelete(id);
     }
+}
+
+export async function criarLogin(login: Pessoa): Promise<Pessoa> {
+    return await PessoaModel.create(login);
 }

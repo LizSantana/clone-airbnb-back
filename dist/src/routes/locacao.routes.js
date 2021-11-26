@@ -27,6 +27,7 @@ exports.path = '/locacao';
 exports.router.get(exports.path, LocacaoController.getLocacao);
 //router.get(`${path}/erro`, AloController.getAloErro);
 exports.router.get(`${exports.path}/uf/:uf`, LocacaoController.getFiltragemPorUF);
+// router.get(`${path}/:uf?uf:capacidade?capacidade`, LocacaoController.getFiltragemPorUFCapacidade)
 exports.router.get(`${exports.path}/localidade/:localidade`, LocacaoController.getFiltragemPorLocalidade);
 exports.router.get(`${exports.path}/capacidade/:capacidade`, LocacaoController.getFiltragemPorCapacidade);
 exports.router.get(`${exports.path}/preco/:preco`, LocacaoController.getFiltragemPorPreco);

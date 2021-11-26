@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deletaLocacao = exports.updateLocacao = exports.inserirLocacao = exports.buscarPorPreco = exports.buscarPorCapacidade = exports.buscarPorLocalidade = exports.buscarPorUF = void 0;
+exports.deletaLocacao = exports.updateLocacao = exports.inserirLocacao = exports.buscarPorPreco = exports.buscarPorCapacidade = exports.buscarPorUFCapacidade = exports.buscarPorLocalidade = exports.buscarPorUF = void 0;
 const locacaoModel_1 = require("./locacaoModel");
 function buscarPorUF(uf) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -25,6 +25,13 @@ function buscarPorLocalidade(localidade) {
     });
 }
 exports.buscarPorLocalidade = buscarPorLocalidade;
+function buscarPorUFCapacidade(uf, capacidade) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let consulta = locacaoModel_1.LocacaoModel.where('uf').equals(uf).where('capacidade').equals(capacidade);
+        return consulta.exec();
+    });
+}
+exports.buscarPorUFCapacidade = buscarPorUFCapacidade;
 function buscarPorCapacidade(capacidade) {
     return __awaiter(this, void 0, void 0, function* () {
         let consulta = locacaoModel_1.LocacaoModel.find({ capacidade: { $gte: capacidade } });

@@ -34,24 +34,24 @@ export async function getFiltragemPorCapacidade(req: Request, res: Response) {
     return res.json(resultado);
 }
 
-export async function getFiltragemPorPreco(req:Request, res: Response) {
+export async function getFiltragemPorPreco(req: Request, res: Response) {
     const preco = parseInt(req.params.preco);
     const resultado = await locacaoRepositorio.buscarPorPreco(preco);
     return res.json(resultado);
 }
 
 export async function postLocacao(req: Request, res: Response) {
-  
-    const erros = validationResult(req); 
+
+    const erros = validationResult(req);
 
     if (!erros.isEmpty()) {
-       return res.status(400).json({erros: erros.array()});
+        return res.status(400).json({ erros: erros.array() });
     } else {
-    const locacao = req.body;
-    if (locacao) {
-        await locacaoRepositorio.inserirLocacao(locacao);
-       return res.redirect('back');
-    }
+        const locacao = req.body;
+        if (locacao) {
+            await locacaoRepositorio.inserirLocacao(locacao);
+            return res.redirect('back');
+        }
     }
 }
 
@@ -61,35 +61,48 @@ export async function putLocacao(req: Request, res: Response) {
         /*res.status(200).send({
             message: 'Locacao atualizada com sucesso!'
         });*/
-        res.redirect(200,'back')
-    } catch(error) {
+        res.redirect(200, 'back')
+    } catch (error) {
         console.log(error);
-        res.status(500).send({message: 'Falha ao atualizar a locação'});
+        res.status(500).send({ message: 'Falha ao atualizar a locação' });
     }
 }
 
 export async function deleteLocacao(req: Request, res: Response) {
-    try{
-        await locacaoRepositorio.deletaLocacao(req.params.id, req.body); 
+    try {
+        await locacaoRepositorio.deletaLocacao(req.params.id, req.body);
         res.status(200).send({
             message: 'Locação deletada com sucesso!'
         })
-    } catch(error) {
+    } catch (error) {
         console.log(error);
-        res.status(500).send({message: 'Falha ao deletar locacao'});
+        res.status(500).send({ message: 'Falha ao deletar locacao' });
     }
 }
 
 export function postAloValidado(req: Request, res: Response) {
     const erros = validationResult(req);
     if (!erros.isEmpty()) {
-        return res.status(400).json({erros: erros.array()});
+        return res.status(400).json({ erros: erros.array() });
     } else {
-        const {nome} = req.body;
+        const { nome } = req.body;
         return res.send(`Alô, ${nome}!`);
     }
 }
 
 export function getAloErro(req: Request, res: Response) {
     throw new Error('Algo deu errado!');
+}
+
+export async function postLogin(req: Request, res: Response) {
+    const erros = validationResult(req);
+    if (!erros.isEmpty()) {
+        return res.status(400).json({ erros: erros.array() });
+    } else {
+        const login = req.body;
+        if (login) {
+            await locacaoRepositorio.criarLogin(login);
+            return res.redirect('back');
+        }
+    }
 }
