@@ -20,4 +20,4 @@ router.post(`${path}/criarlocacao`,
             LocacaoController.postLocacao);
 router.post(`${path}/:id`, LocacaoController.putLocacao);
 router.post(`${path}/:id/deletarlocacao`, LocacaoController.deleteLocacao);
-router.post(`${path}/criarcadastro`, AuthController.cadastro);
+
