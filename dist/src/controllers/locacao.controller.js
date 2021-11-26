@@ -28,7 +28,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAloErro = exports.postAloValidado = exports.deleteLocacao = exports.putLocacao = exports.postLocacao = exports.getFiltragemPorPreco = exports.getFiltragemPorCapacidade = exports.getFiltragemPorLocalidade = exports.getFiltragemPorUF = exports.getLocacao = void 0;
+exports.getAloErro = exports.postAloValidado = exports.deleteLocacao = exports.putLocacao = exports.postLocacao = exports.getFiltragemPorPreco = exports.getFiltragemPorCapacidade = exports.getFiltragemPorLocalidade = exports.getFiltragemPorLocalidadeEPreco = exports.getFiltragemPorUF = exports.getLocacao = void 0;
 const express_validator_1 = require("express-validator");
 const locacaoModel_1 = require("../persistencia/locacaoModel");
 const locacaoRepositorio = __importStar(require("../persistencia/locacaoRepositorio"));
@@ -39,6 +39,10 @@ function getLocacao(req, res) {
     });
 }
 exports.getLocacao = getLocacao;
+/*export async function getLocalidade(req: Request, res: Response) {
+    const locacao = await LocacaoModel.find();
+    return res.json(locacao);
+}*/
 function getFiltragemPorUF(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const uf = req.params.uf;
@@ -47,11 +51,15 @@ function getFiltragemPorUF(req, res) {
     });
 }
 exports.getFiltragemPorUF = getFiltragemPorUF;
-// export async function getFiltragemPorUFCapacidade(req: Request, res: Response) {
-//     const { uf, capacidade } = req.query;
-//     const resultado = await locacaoRepositorio.buscarPorUFCapacidade(uf, capacidade);
-//     return res.json(resultado);
-// }
+function getFiltragemPorLocalidadeEPreco(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const localidade = req.params.localidade;
+        const preco = parseInt(req.params.preco);
+        const resultado = yield locacaoRepositorio.buscarPorLocalidadeEPreco(localidade, preco);
+        return res.json(resultado);
+    });
+}
+exports.getFiltragemPorLocalidadeEPreco = getFiltragemPorLocalidadeEPreco;
 function getFiltragemPorLocalidade(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const localidade = req.params.localidade;

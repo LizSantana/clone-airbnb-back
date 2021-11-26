@@ -27,8 +27,12 @@ $ npm install
 
 ## Tarefas da dupla
 
+### Lorena
+ - Implementação do Express
+ - Funções de busca
+
 ### Liz
- -  Criação de Models e Schemas com Mongoose
+ - Criação de Models e Schemas com Mongoose
  - Conexão com o MongoDB
  - CRUD, Criação de endpoints da api e funções controllers
  - Deploy no heroku
