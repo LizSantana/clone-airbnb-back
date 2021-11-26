@@ -101,16 +101,3 @@ export function postAloValidado(req: Request, res: Response) {
 export function getAloErro(req: Request, res: Response) {
     throw new Error('Algo deu errado!');
 }
-
-export async function postLogin(req: Request, res: Response) {
-    const erros = validationResult(req);
-    if (!erros.isEmpty()) {
-        return res.status(400).json({ erros: erros.array() });
-    } else {
-        const login = req.body;
-        if (login) {
-            await locacaoRepositorio.criarLogin(login);
-            return res.redirect('back');
-        }
-    }
-}

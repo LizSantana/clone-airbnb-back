@@ -1,9 +1,5 @@
 import { LocacaoModel } from './locacaoModel';
-import { PessoaModel } from './pessoaModel';
 import { Locacao } from '../entidades/locacao';
-import { Pessoa } from '../entidades/pessoa';
-import { ObjectId } from 'mongoose';
-import { Query } from 'mongoose';
 
 export async function buscarPorUF(uf: string): Promise<Locacao[]> {
     let consulta =  LocacaoModel.find({"uf": {"$regex": uf, "$options": "i"}});
@@ -51,6 +47,3 @@ export async function deletaLocacao(id: string, cpf: Object): Promise<any> {
     }
 }
 
-export async function criarLogin(login: Pessoa): Promise<Pessoa> {
-    return await PessoaModel.create(login);
-}

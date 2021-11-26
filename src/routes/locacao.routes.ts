@@ -1,6 +1,7 @@
 import { NextFunction, Router } from 'express';
 import { body } from 'express-validator';
 import * as LocacaoController from '../controllers/locacao.controller';
+import * as AuthController from '../controllers/auth.controller';
 import uploads from '../upload';
 
 export const router = Router();
@@ -19,4 +20,4 @@ router.post(`${path}/criarlocacao`,
             LocacaoController.postLocacao);
 router.post(`${path}/:id`, LocacaoController.putLocacao);
 router.post(`${path}/:id/deletarlocacao`, LocacaoController.deleteLocacao);
-router.post(`${path}/criarlogin`, LocacaoController.postLogin);
+router.post(`${path}/criarcadastro`, AuthController.postCadastro);
