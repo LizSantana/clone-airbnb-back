@@ -20,6 +20,6 @@ if(process.env.NODE_ENV !== 'production'){
 }
 
 app.use(`/api`, locacaoRouter);
-app.use(`/api${authPath}`, authRouter);
+// app.use(`/api${authPath}`, authRouter);
 
 export default app;

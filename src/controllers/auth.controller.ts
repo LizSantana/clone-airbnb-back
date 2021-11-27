@@ -35,7 +35,7 @@ export async function cadastro(req: Request, res: Response) {
         const cadastro = req.body;
         if (cadastro) {
             await pessoaRepositorio.criarCadastro(cadastro);
-            return res.redirect('back');
+            return res.redirect(200, 'back');
         }
     }
 }
