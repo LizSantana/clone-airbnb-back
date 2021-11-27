@@ -3,6 +3,7 @@ import { Request, Response, NextFunction } from 'express';
 import { validationResult } from 'express-validator';
 import * as pessoaRepositorio from '../persistencia/pessoaRepositorio';
 import jwt from 'jsonwebtoken';
+import jwt_decode from "jwt-decode";
 
 /*export function login(req: Request, res: Response, next: NextFunction) {
     passport.authenticate('login', (err, user, info) => {
@@ -97,4 +98,20 @@ export async function login(req: Request, res: Response) {
             return res.redirect('back');
         }*/
     }
+}
+
+
+export async function verifyJWT(req: Request, res: Response, next: NextFunction){
+    const token: any = req.body.token || req.headers['x-access-token'];
+    if (!token) return res.status(401).json({ auth: false, message: 'No token provided.' });
+    
+    jwt.verify(token, process.env.SECRET ||  "senha-forte", (err:any, decoded:any) => {
+        
+      if (err) return res.status(500).json({ auth: false, message: 'Failed to authenticate token.' });
+      
+      // se tudo estiver ok, salva no request para uso posterior
+      
+      req.body = (<any>decoded).body;
+      next();
+    });
 }

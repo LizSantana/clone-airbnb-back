@@ -2,7 +2,9 @@ import { NextFunction, Router } from 'express';
 import { body } from 'express-validator';
 import * as LocacaoController from '../controllers/locacao.controller';
 import * as AuthController from '../controllers/auth.controller';
+import { verifyJWT} from '../controllers/auth.controller';
 import uploads from '../upload';
+import passport from 'passport';
 
 export const router = Router();
 export const path = '/locacao';
@@ -16,7 +18,7 @@ router.get(`${path}/capacidade/:capacidade`, LocacaoController.getFiltragemPorCa
 router.get(`${path}/preco/:preco`, LocacaoController.getFiltragemPorPreco);
 router.get(`${path}/uf/:uf/preco/:preco`,
             LocacaoController.getFiltragemPorUfEPreco);
-router.post(`${path}/criarlocacao`,
+router.post(`${path}/criarlocacao`, verifyJWT,
             LocacaoController.postLocacao);
 router.post(`${path}/:id`, LocacaoController.putLocacao);
 router.post(`${path}/:id/deletarlocacao`, LocacaoController.deleteLocacao);
