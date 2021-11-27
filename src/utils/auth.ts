@@ -4,15 +4,15 @@ import passportJWT from 'passport-jwt';
 
 const LocalStrategy = passportLocal.Strategy;
 
-passport.use('login', new LocalStrategy((user, passwd, done) => {
+passport.use('login', new LocalStrategy((email, senha, done) => {
     //Implementar toda a lógica de autenticação
-    if (user !== 'usuario') {
+    if (email !== 'email') {
         return done(undefined, false, { message: 'Usuário ou senha inválidos' });
     }
-    if (passwd !== 'senha') {
+    if (senha !== 'senha') {
         return done(undefined, false, { message: 'Usuário ou senha inválidos' });
     }
-    return done(undefined, {user: user, passwd: passwd});
+    return done(undefined, {email: email, senha: senha});
 }));
 
 const JWTStrategy = passportJWT.Strategy;
