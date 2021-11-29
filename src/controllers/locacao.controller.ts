@@ -69,7 +69,7 @@ export async function putLocacao(req: Request, res: Response) {
         /*res.status(200).send({
             message: 'Locacao atualizada com sucesso!'
         });*/
-        res.redirect(200,'back')
+        res.redirect('back')
     } catch(error) {
         console.log(error);
         res.status(500).send({message: 'Falha ao atualizar a locação'});
