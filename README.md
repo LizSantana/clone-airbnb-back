@@ -36,3 +36,9 @@ $ npm install
  - Conexão com o MongoDB
  - CRUD, Criação de endpoints da api e funções controllers
  - Deploy no heroku
+
+
+ ## Novas Funcionalidades
+ - Filtro com utilização do regex
+ - Filtragem dupla
+ - Autenticação com JWT
