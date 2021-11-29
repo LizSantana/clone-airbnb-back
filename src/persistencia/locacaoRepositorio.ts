@@ -23,6 +23,21 @@ export async function buscarPorUfEPreco(uf: string, preco: number): Promise<Loca
     return consulta.exec(); 
 }
 
+export async function buscarPorLocalidadeEPreco(localidade: string, preco: number): Promise<Locacao[]> {
+    let consulta = LocacaoModel.where("localidade").equals(localidade).where("preco").lte(preco);
+    return consulta.exec(); 
+}
+
+export async function buscarPorUfECapacidade(uf: string, capacidade: number): Promise<Locacao[]> {
+    let consulta = LocacaoModel.where("uf").equals(uf).where("capacidade").gte(capacidade);
+    return consulta.exec(); 
+}
+
+export async function buscarPorLocalidadeECapacidade(localidade: string, capacidade: number): Promise<Locacao[]> {
+    let consulta = LocacaoModel.where("localidade").equals(localidade).where("capacidade").gte(capacidade);
+    return consulta.exec(); 
+}
+
 export async function buscarPorPreco(preco: number): Promise<Locacao[]> {
     let consulta = LocacaoModel.find({preco: {$lte: preco}});
     return consulta.exec();

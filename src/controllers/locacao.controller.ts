@@ -17,6 +17,11 @@ export async function getUf(req: Request, res: Response) {
     console.log(locacao);
 }
 
+export async function getLocalidade(req: Request, res: Response) {
+    const locacao = await LocacaoModel.find({}).distinct("localidade");
+    return res.json(locacao);
+}
+
 export async function getFiltragemPorUF(req: Request, res: Response) {
     const uf = req.params.uf;
     const resultado = await locacaoRepositorio.buscarPorUF(uf);
@@ -27,6 +32,27 @@ export async function getFiltragemPorUfEPreco(req: Request, res: Response) {
     const uf = req.params.uf;
     const preco = parseInt(req.params.preco);
     const resultado = await locacaoRepositorio.buscarPorUfEPreco(uf, preco);
+    return res.json(resultado);
+}
+
+export async function getFiltragemPorLocalidadeEPreco(req: Request, res: Response) {
+    const localidade = req.params.localidade;
+    const preco = parseInt(req.params.preco);
+    const resultado = await locacaoRepositorio.buscarPorLocalidadeEPreco(localidade, preco);
+    return res.json(resultado);
+}
+
+export async function getFiltragemPorUfECapacidade(req: Request, res: Response) {
+    const uf = req.params.uf;
+    const capacidade = parseInt(req.params.capacidade);
+    const resultado = await locacaoRepositorio.buscarPorUfECapacidade(uf, capacidade);
+    return res.json(resultado);
+}
+
+export async function getFiltragemPorLocalidadeECapacidade(req: Request, res: Response) {
+    const localidade = req.params.localidade;
+    const capacidade = parseInt(req.params.capacidade);
+    const resultado = await locacaoRepositorio.buscarPorLocalidadeECapacidade(localidade, capacidade);
     return res.json(resultado);
 }
 
