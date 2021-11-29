@@ -87,17 +87,3 @@ export async function deleteLocacao(req: Request, res: Response) {
         res.status(500).send({ message: 'Falha ao deletar locacao' });
     }
 }
-
-export function postAloValidado(req: Request, res: Response) {
-    const erros = validationResult(req);
-    if (!erros.isEmpty()) {
-        return res.status(400).json({ erros: erros.array() });
-    } else {
-        const { nome } = req.body;
-        return res.send(`Alô, ${nome}!`);
-    }
-}
-
-export function getAloErro(req: Request, res: Response) {
-    throw new Error('Algo deu errado!');
-}

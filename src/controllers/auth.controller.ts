@@ -100,6 +100,37 @@ export async function login(req: Request, res: Response) {
     }
 }
 
+export async function logout(req: Request, res: Response) {
+    const erros = validationResult(req);
+    if (!erros.isEmpty()) {
+        return res.status(400).json({ erros: erros.array() });
+    } else {
+        try{
+           const consulta =  await pessoaRepositorio.logar(req.body);
+           if (consulta) {
+            const token = jwt.sign( req.body, process.env.SECRET ||  "senha-forte", {expiresIn:3600});
+            return res.json({ auth: true, token: token });
+            /*res.status(200).send({
+                message: 'Login realizado com sucesso!'
+            });*/
+          }
+        
+    } catch (error) {
+        console.log(error);
+        //res.status(401).end();
+        res.send(error);
+        res.status(500).json({message: 'Login inválido!'});
+            /* res.status(500).send({ message: 'Falha ao realizar locacao' });*/
+        }
+    
+        /*const login = req.body;
+        if (login) {
+            await pessoaRepositorio.criarCadastro(login);
+            return res.redirect('back');
+        }*/
+    }
+}
+
 
 export async function verifyJWT(req: Request, res: Response, next: NextFunction){
     const token: any = req.body.token || req.headers['x-access-token'];

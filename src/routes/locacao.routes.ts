@@ -20,8 +20,8 @@ router.get(`${path}/uf/:uf/preco/:preco`,
             LocacaoController.getFiltragemPorUfEPreco);
 router.post(`${path}/criarlocacao`, verifyJWT,
             LocacaoController.postLocacao);
-router.post(`${path}/:id`, LocacaoController.putLocacao);
-router.post(`${path}/:id/deletarlocacao`, LocacaoController.deleteLocacao);
+router.post(`${path}/:id`,verifyJWT, LocacaoController.putLocacao);
+router.post(`${path}/:id/deletarlocacao`,verifyJWT, LocacaoController.deleteLocacao);
 router.post('/cadastro', AuthController.cadastro);
 router.post('/login', AuthController.login);
 router.get('/pessoas', AuthController.getPessoas)
